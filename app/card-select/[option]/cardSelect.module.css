@@ -1,0 +1,103 @@
+.cardSelectContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* 제목 스타일 */
+  .cardSelectTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* 부제목 스타일 */
+  .cardSelectSubtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* 카드 선택 현황 표시 */
+  .cardSelectStatus {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center; /* 수평 가운데 정렬 */
+  }
+  
+  /* 텍스트박스 스타일 */
+  .cardSelectTextarea {
+    width: 480px;
+    height: 150px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+  
+  .cardSelectTextarea:focus {
+    border-color: #4CAF50; /* 포커스 시 테두리 색상 */
+    outline: none; /* 포커스 시 기본 파란색 외곽선 제거 */
+  }
+  
+  /* 제출 버튼 스타일 */
+  .cardSelectButton {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cardSelectButton:hover {
+    background-color: #45a049;
+  }
+  
+  .cardSelectButton:active {
+    transform: scale(0.98);
+  }
+  
+  /* 카드 원형 배치 */
+  .cardCircle {
+    position: relative;
+    width: calc(480px + 140px); /* 카드 원의 크기 설정 */
+    height: calc(480px + 140px + 20px);
+    transition: all 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    position: absolute; /* 카드를 절대 위치로 설정 */
+    width: 80px; /* 카드 너비 */
+    height: 140px; /* 카드 높이 */
+    transform-origin: center center; /* 카드 회전 중심을 중앙으로 설정 */
+    transition: transform 1s ease; /* 위치와 투명도 변화 */
+  }
+  
+  .cardImage {
+    cursor: pointer; /* 카드에 마우스 올리면 포인터 커서로 변경 */
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* 선택된 카드에 스타일 추가 */
+  .cardSelected {
+    border: 3px solid #ffcc00; /* 선택된 카드에 노란색 테두리 추가 */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* 선택된 카드에 그림자 추가 */
+  }
+  

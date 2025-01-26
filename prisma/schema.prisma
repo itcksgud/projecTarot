@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model TarotPost {
+  id                    String  @id @default(auto()) @map("_id") @db.ObjectId
+  spread_type           String
+  selected_card_numbers Int[]
+  content               String?
+  date                  String
+  answer                String?
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  name      String
+  role      String
+  createdAt DateTime @default(now())
+}
+
+//변경 후 업데이트 npx prisma generate
