@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from "next/navigation";
 import prisma from '@/lib/db';
 import Image from 'next/image';
-import styles from './Detail.module.css';
+import styles from './detail.module.css';
 
 let spread;
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import styles from './CardSelect.module.css';
+import styles from './cardSelect.module.css';
 
 const cards = Array.from({ length: 78 }, (_, index) => index);
 
