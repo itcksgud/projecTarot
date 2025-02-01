@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./adminPage.module.css"; // module.css 사용
+import styles from "./adminpage.module.css"; // module.css 사용
 import Link from "next/link";
 
 export default function MyPage() {
