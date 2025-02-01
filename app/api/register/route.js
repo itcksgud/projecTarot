@@ -48,5 +48,6 @@ export async function POST(req) {
       JSON.stringify({ message: '서버 오류가 발생했습니다.' }),
       { status: 500 }
     );
+    
   }
 }
