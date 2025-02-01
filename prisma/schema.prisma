@@ -14,6 +14,7 @@ model TarotPost {
   content               String?
   date                  String
   answer                String?
+  author_id             String  
 }
 
 model User {
@@ -25,4 +26,12 @@ model User {
   createdAt DateTime @default(now())
 }
 
+model Comment {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  author_id   String
+  author_name String
+  post_id     String
+  content     String
+  createdAt   DateTime @default(now())
+}
 //변경 후 업데이트 npx prisma generate

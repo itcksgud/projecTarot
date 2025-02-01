@@ -1,3 +1,13 @@
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 기본 색상 유지 */
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
 .main-container {
   position: absolute;        /* 위치를 절대 위치로 설정 */
   top: 50%;                  /* 화면 높이의 50%로 위치 */

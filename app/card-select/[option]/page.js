@@ -92,7 +92,7 @@ export default function CardSelect() {
 
     if (response.status === 200) {
       // 성공적으로 제출되었으면 mypage로 리디렉션
-      window.location.href = '/my-page';  // 리디렉션
+      window.location.href = result.redirectUrl;
     } else {
       // 실패 시 메시지 출력
       alert(result.message);

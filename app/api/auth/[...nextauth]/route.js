@@ -7,7 +7,7 @@ import bcryptjs from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-const authOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -63,6 +63,5 @@ const authOptions = {
 };
 
 const handler = NextAuth(authOptions);
-
 // Export named handlers for GET and POST methods
 export { handler as GET, handler as POST };

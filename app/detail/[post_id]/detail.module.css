@@ -1,0 +1,85 @@
+.cardContainer {
+    display: flex;
+    justify-content: center;  /* 전체 컨테이너의 중앙 배치 */
+    align-items: center;  /* 세로 중앙 배치 */
+    gap: 20px;
+}
+
+.crossCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* cross-line의 자식들을 가로로 중앙 정렬 */
+    align-items: center;  /* 세로 중앙 정렬 */
+    gap: 20px;
+}
+
+.edgeLine {
+    display: flex;
+    justify-content: center;  /* edge-line의 자식들을 가로로 중앙 정렬 */
+}
+
+.centerLine {
+    display: flex;
+    justify-content: center;  /* center-line의 자식들을 가로로 중앙 정렬 */
+    align-items: center;  /* 세로 중앙 정렬 */
+    position: relative;
+}
+
+.interferenceCard {
+    position: absolute;  /* 절대 위치 지정 */
+    left: 50%; /* ✅ 가운데 정렬을 위한 기준 */
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(90deg); /* ✅ 중앙 배치 후 회전 */
+    z-index: 1;  /* 겹칠 때 어느 요소가 위에 올라올지 결정 */
+}
+
+.comments {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.comment {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.commentDate {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 5px;
+}
+  
+.commentForm {
+margin-top: 20px;
+width: 100%;
+max-width: 600px;
+display: flex;
+flex-direction: column;
+}
+
+.commentForm textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+resize: vertical;
+min-height: 100px;
+}
+
+.commentForm button {
+margin-top: 10px;
+padding: 10px;
+background-color: #007bff;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.commentForm button:hover {
+background-color: #0056b3;
+}

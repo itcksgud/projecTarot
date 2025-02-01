@@ -5,7 +5,7 @@ export default function Home() {
       spread_type: spread_type,
     };
 
-    const response = await fetch('/api/redirect-post', {
+    const response = await fetch('/api/redirect-card-select', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,13 @@ export default function Home() {
       window.location.href = result.redirect;  // 수정된 부분: result.redirect
     } else {
       // 실패 시 메시지 출력
-      alert(result.message);
+      if (response.status == 401)
+      {
+        window.location.href = result.redirect;
+      }
+      else {
+        alert(result.message);
+      }
     }
   };
 
@@ -28,15 +34,15 @@ export default function Home() {
     <div className="main-container">
       <button
         className="main-container-button"
-        onClick={() => handleRedirect('a-or-b')}
-      >
-        어떤 선택을 할까?
-      </button>
-      <button
-        className="main-container-button"
         onClick={() => handleRedirect('celtic-cross')}
       >
         심층 분석
+      </button>
+      <button
+        className="main-container-button"
+        onClick={() => handleRedirect('a-or-b')}
+      >
+        어떤 선택을 할까?
       </button>
     </div>
   );

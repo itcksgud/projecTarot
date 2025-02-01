@@ -13,7 +13,22 @@ export default function Header() {
 
 function Nav() {
   const { data: session } = useSession();
+  const handleSubmit = async () => {
 
+    const response = await fetch('/api/redirect-mypage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const result = await response.json()
+    console.log(result);
+    if(response.status === 200)
+    {
+      window.location.href= result.redirect;
+    }
+  }
   return (
     <header
       style={{
@@ -28,6 +43,7 @@ function Nav() {
       <div>
         {session ? (
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <button onClick={handleSubmit}>my page</button>
             <span>안녕하세요, {session.user.name}님!</span>
             <button
               onClick={() => signOut()}
@@ -43,7 +59,7 @@ function Nav() {
             </button>
           </div>
         ) : (
-          <Link href="/login">
+          <Link href="/login/home">
             <button className="loginButton">
               로그인
             </button>

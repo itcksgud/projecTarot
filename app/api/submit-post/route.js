@@ -1,5 +1,7 @@
 import prisma from '@/lib/db';
 import seedrandom from 'seedrandom';  // seedrandom을 함수로 임포트
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route"; // next-auth 설정 가져오기
 
 function generateRandomArray(seed) {
   const array = Array.from({ length: 78 }, (_, i) => i); // 0~77
@@ -9,11 +11,12 @@ function generateRandomArray(seed) {
     const j = Math.floor(rand() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];  // 카드 배열 섞기
   }
-  console.log('Shuffled Array:', array); // 섞인 배열 출력
+  //console.log('Shuffled Array:', array); // 섞인 배열 출력
   return array;
 }
 
 export async function POST(request) {
+  const session = await getServerSession(authOptions); // 올바르게 세션 가져오기
   try {
     // 클라이언트에서 보낸 JSON 데이터를 받음
     const data = await request.json();
@@ -30,10 +33,10 @@ export async function POST(request) {
     const selectedCards = selected_card_numbers.map(cardIndex => randomArray[cardIndex]);
 
     // 데이터 확인용 로그
-    console.log('Spread_type:', spread_type);
-    console.log('Selected Cards:', selectedCards);
-    console.log('Text Area Content:', content);
-    console.log('Date:', date);
+    // console.log('Spread_type:', spread_type);
+    // console.log('Selected Cards:', selectedCards);
+    // console.log('Text Area Content:', content);
+    // console.log('Date:', date);
 
     // content가 없을 경우
     
@@ -61,11 +64,12 @@ export async function POST(request) {
           content,
           date: date, // 날짜로 저장
           answer: null,
+          author_id: session.user.id
         },
       });
 
       return new Response(
-        JSON.stringify({ message: 'Data submitted successfully!', redirectUrl: '/my-page' }),
+        JSON.stringify({ message: 'Data submitted successfully!', redirectUrl: `/my-page/${session.user.id}` }),
         { status: 200 }
       );
     } else {

@@ -1,19 +1,62 @@
 // app/detail/[id]/page.js
+
+'use client'
+import { useEffect, useState } from 'react';
+import { useParams } from "next/navigation";
 import prisma from '@/lib/db';
 import Image from 'next/image';
+import styles from './Detail.module.css';
 
 let spread;
 
-export default async function DetailPage({ params }) {
-  const { id } = await params; // URL 파라미터에서 id를 가져옵니다.
+export default function DetailPage() {
+  const { post_id } = useParams();
   // DB에서 ObjectId로 데이터를 조회합니다. Prisma에서는 ObjectId를 String으로 처리합니다.
-  const tarotPost = await prisma.tarotPost.findUnique({
-    where: { id: id }, // id는 문자열로 그대로 처리
-  });
+
+  // 상태 변수 선언
+  const [tarotPost, setTarotPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState('');
+
+  // 데이터 로드 함수
+  useEffect(() => {
+    if (!post_id) return; // id가 없으면 데이터 로딩을 하지 않음
+
+    // tarotPost 데이터 가져오기
+    async function fetchData() {
+      const postResponse = await fetch(`/api/tarotPost/${post_id}`);
+      const postData = await postResponse.json();
+      setTarotPost(postData);
+
+      // 댓글 데이터 가져오기
+      const commentsResponse = await fetch(`/api/comments/${post_id}`);
+      const commentsData = await commentsResponse.json();
+      setComments(commentsData);
+    }
+
+    fetchData();
+  }, [post_id]);
 
   if (!tarotPost) {
     return <div>데이터를 찾을 수 없습니다.</div>;
   }
+
+  const handleCommentSubmit = async () => {
+    if (!comment.trim()) return;
+
+    // 댓글 제출 처리
+    const response = await fetch(`/api/comments/${post_id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: comment }),
+    });
+
+    if (response.ok) {
+      const newComment = await response.json();
+      setComments([...comments, newComment]);
+      setComment('');
+    }
+  };
 
   if (tarotPost.spread_type==='celtic-cross')
   {
@@ -160,6 +203,25 @@ export default async function DetailPage({ params }) {
         wordWrap: 'break-word' /* 단어 줄바꿈 */
         }}>{tarotPost.answer}
       </p>
+        {/* 댓글 리스트 */}
+        <div className={styles.comments}>
+        {comments.map((comment) => (
+          <div key={comment.id} className={styles.comment}>
+            <p>{comment.content}</p>
+            <p className={styles.commentDate}>{new Date(comment.createdAt).toLocaleString()}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* 댓글 작성 폼 */}
+      <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder='댓글을 작성하세요...'
+        />
+        <button type='submit'>댓글 작성</button>
+      </form>
     </div>
   );
   
