@@ -1,7 +1,12 @@
 import bcrypt from 'bcryptjs';  // 비밀번호 해싱을 위한 라이브러리
 import prisma from '@/lib/db';  // Prisma 클라이언트 import (경로를 프로젝트에 맞게 수정)
 
+
+
 export async function POST(req) {
+
+  console.log("DATABASE_URL:", process.env.DATABASE_URL);
+  
   const { name, email, password } = await req.json();  // 클라이언트에서 보낸 JSON 데이터 받기
 
   if (!name || !email || !password) {
