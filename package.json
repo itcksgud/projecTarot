@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mongodb:init": "npx prisma db push --schema=./prisma/schema.prisma"
+    "mongodb:init": "npx prisma db push --schema=./prisma/schema.prisma",
+    "heroku-postbuild": "npm run mongodb:init"
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
