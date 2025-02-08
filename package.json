@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mongodb:init": "npx prisma db push --schema=./prisma/schema.prisma"
+    "postbuild": "npx prisma db push --schema=./prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",

@@ -4,9 +4,6 @@ import prisma from '@/lib/db';  // Prisma 클라이언트 import (경로를 프�
 
 
 export async function POST(req) {
-
-  console.log("DATABASE_URL:", process.env.DATABASE_URL);
-  
   const { name, email, password } = await req.json();  // 클라이언트에서 보낸 JSON 데이터 받기
 
   if (!name || !email || !password) {
