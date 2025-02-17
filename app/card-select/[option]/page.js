@@ -8,7 +8,7 @@ import styles from './cardSelect.module.css';
 const cards = Array.from({ length: 78 }, (_, index) => index);
 
 export default function CardSelect() {
-  const radius = 240; // 카드들이 배치될 원의 반지름
+  const radius = 120; // 카드들이 배치될 원의 반지름
   const totalCards = cards.length + 3;
   const { option } = useParams();
   const [isClient, setIsClient] = useState(false);
@@ -37,12 +37,12 @@ export default function CardSelect() {
   } else if (option === 'a-or-b') {
     cardCnt = 5;
     title='어떤 선택을 할까?';
-    subtitle='현재의 나 1장, 1번 선택지 2장, 2번 선택지 2장을 뽑아주세요!';
+    subtitle='현재의 나를 생각하면서 1장,\n1번 선택지를 생각하면서 2장,\n2번 선택지를 생각하면서 2장을 뽑아주세요!';
     holder='주제와 선택지들에 대해 명확하게 알려주세요.';
   } else if (option === 'celtic-cross') {
     cardCnt = 10;
     title='심층 분석';
-    subtitle=`심층 분석할 대상(사람, 사건, 운)을 생각하면서 10장을 뽑아주세요!`;
+    subtitle=`심층 분석할 대상(사람, 사건, 운)을 생각하면서\n10장을 뽑아주세요!`;
     holder='심층 분석할 주제를 명확하게 알려주세요. 대상의 과거, 현재, 미래 등을 뽑아 자세히 분석해드립니다!';
   } else {
     content = <div>선택 없음</div>;
@@ -132,8 +132,8 @@ export default function CardSelect() {
                 className="card-image"
                 src={`/card_images/card_78.jpg`}
                 alt={`Card ${item}`}
-                width={80}
-                height={140}
+                width={40}
+                height={70}
                 onClick={() => handleClick(item)}
               />
             </div>

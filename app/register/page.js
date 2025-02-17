@@ -42,13 +42,11 @@ export default function RegisterPage() {
         body: JSON.stringify({ name, email, password }),
       });
 
+      const data = await res.json();
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.message || '문제가 발생했습니다.');
       }
-
-      setSuccess('계정이 성공적으로 생성되었습니다!');
-      setFormData({ name: '', email: '', password: '', passwordConfirm: '' });
+      window.location.href=data.redirect;
     } catch (err) {
       setError(err.message);
     }

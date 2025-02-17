@@ -13,13 +13,19 @@ export default function Header() {
 
 function Nav() {
   const { data: session } = useSession();
-  const handleSubmit = async () => {
+  const handleSubmit = async (redirectUrl, loginUrl) => {
 
-    const response = await fetch('/api/redirect-mypage', {
+    const data = {
+      redirectUrl: redirectUrl,
+      loginUrl: loginUrl,
+    };
+
+    const response = await fetch('/api/redirect', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify(data),
     });
 
     const result = await response.json()
@@ -35,29 +41,34 @@ function Nav() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "1rem",
+        padding: "0.5rem",
         borderBottom: "1px solid #ccc",
       }}
     >
       <Link href="/" className="navbar-link">projecTarot</Link>
       <div>
         {session ? (
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <button onClick={handleSubmit}>my page</button>
-            <span>안녕하세요, {session.user.name}님!</span>
+        <div className="layout-container">
+          <span className="greeting-text">
+            안녕하세요, {session.user.name}님!
+          </span>
+          <div className="button-container">
             <button
-              onClick={() => signOut()}
-              style={{
-                padding: "0.5rem 1rem",
-                border: "none",
-                backgroundColor: "#f00",
-                color: "#fff",
-                cursor: "pointer",
-              }}
+              onClick={() => handleSubmit('/my-page/','/login/home')}
+              className="button my-page-button"
+            >
+              my page
+            </button>
+            
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="button logout-button"
             >
               Logout
             </button>
           </div>
+        </div>
+        
         ) : (
           <Link href="/login/home">
             <button className="loginButton">

@@ -33,7 +33,7 @@
   
   /* 텍스트박스 스타일 */
   .cardSelectTextarea {
-    width: 480px;
+    width: 320px;
     height: 150px;
     padding: 10px;
     border: 2px solid #ddd;
@@ -52,8 +52,8 @@
   
   /* 제출 버튼 스타일 */
   .cardSelectButton {
-    padding: 12px 24px;
-    font-size: 16px;
+    padding: 6px 12px;
+    font-size: 8px;
     background-color: #4CAF50;
     color: white;
     border: none;

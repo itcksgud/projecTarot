@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';  // 비밀번호 해싱을 위한 라이브러리
 import prisma from '@/lib/db';  // Prisma 클라이언트 import (경로를 프로젝트에 맞게 수정)
+import { redirect } from 'next/dist/server/api-utils';
 
 
 
@@ -8,7 +9,8 @@ export async function POST(req) {
 
   if (!name || !email || !password) {
     return new Response(
-      JSON.stringify({ message: '모든 필드를 입력해야 합니다.' }),
+      JSON.stringify({ message: '모든 필드를 입력해야 합니다.'
+       }),
       { status: 400 }
     );
   }
@@ -39,7 +41,9 @@ export async function POST(req) {
     });
 
     return new Response(
-      JSON.stringify({ message: '계정이 성공적으로 생성되었습니다!', user }),
+      JSON.stringify({ message: '계정이 성공적으로 생성되었습니다!',
+        user,
+        redirect:'/login/home' }),
       { status: 201 }
     );
   } catch (error) {

@@ -59,9 +59,10 @@ a:hover, a:focus {
 
 /* 부제목 스타일 */
 .card-select-subtitle {
-  font-size: 18px;
+  font-size: 12px;
   color: #666;
   margin-bottom: 20px;
+  white-space: pre-line;
 }
 
 /* 카드 선택 현황 표시 */
@@ -124,8 +125,8 @@ a:hover, a:focus {
 
 .card-circle {
   position: relative; /* 부모 기준으로 상대적 위치 */
-  width: calc(480px + 140px ); /* 카드 원의 크기 설정 */
-  height: calc(480px + 140px + 20px);
+  width: calc(120px + 70px); /* 카드 원의 크기 설정 */
+  height: calc(240px + 70px);
   transition: all 1s ease;
   display: flex;
   justify-content: center;
@@ -134,8 +135,8 @@ a:hover, a:focus {
 
 .card {
   position: absolute; /* 카드를 절대 위치로 설정 */
-  width: 80px; /* 카드 너비 */
-  height: 140px; /* 카드 높이 */
+  width: 40px; /* 카드 너비 */
+  height: 70px; /* 카드 높이 */
   transform-origin: center center; /* 카드 회전 중심을 중앙으로 설정 */
   transition: transform 1s ease; /* 위치와 투명도 변화 */
   
@@ -220,8 +221,8 @@ a:hover, a:focus {
 
 .loginButton {
   width: 100%;  /* 버튼 크기를 동일하게 만들기 위해 width 설정 */
-  padding: 0.8rem;
-  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
   color: #fff;
   background-color: #4CAF50;
   border: none;
@@ -239,8 +240,7 @@ a:hover, a:focus {
 }
 
 .navbar-link {
-  font-size: 1.8rem; /* 크고 잘 보이는 글꼴 크기 */
-  font-weight: 600;
+  font-size: 0.8rem; /* 크고 잘 보이는 글꼴 크기 */
   color: #000000; /* 텍스트 색상 */
   text-decoration: none; /* 기본 링크 밑줄 제거 */
   transition: color 0.3s ease, transform 0.3s ease; /* 마우스 오버 시 애니메이션 효과 */
@@ -253,4 +253,48 @@ a:hover, a:focus {
 
 .navbar-link:focus {
   outline: none; /* 포커스 시 테두리 제거 */
+}
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;  /* 세로 중앙 정렬 */
+  gap: 0.5rem;
+}
+/* 전체 버튼을 감싸는 div 스타일 */
+.button-container {
+  display: flex;
+  flex-direction: column;  /* 세로로 배치 */
+  align-items: center;   /* 오른쪽 정렬 */
+  gap: 0.3rem;             /* 버튼 간 간격 */
+  
+}
+
+/* 각 버튼의 공통 스타일 */
+.button-container button {
+  padding: 0.25rem 0.5rem;    /* 패딩 */
+  font-size: 0.6rem;          /* 글자 크기 */
+  height: 20px;                /* 높이 */
+  width: 55px;             /* 최소 너비 */
+  border: none;
+  border-radius: 6px;          /* 둥근 모서리 */
+  cursor: pointer;
+}
+
+/* 'my page' 버튼 스타일 */
+.my-page-button {
+  background-color: #007bff;  /* 파란색 */
+  color: #fff;
+}
+
+/* 'Logout' 버튼 스타일 */
+.logout-button {
+  background-color: #f00;     /* 빨간색 */
+  color: #fff;
+}
+
+/* 인사말 텍스트 스타일 */
+.greeting-text {
+  font-size: 0.7rem;         /* 글자 크기 축소 */
+  font-weight: 600;
+  color: #333;                 /* 텍스트 색상 */
 }

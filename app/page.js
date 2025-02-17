@@ -1,11 +1,12 @@
 'use client';  // 클라이언트 컴포넌트로 지정
 export default function Home() {
-  const handleRedirect = async (spread_type) => {
+  const handleRedirect = async (redirectUrl, loginUrl) => {
     const data = {
-      spread_type: spread_type,
+      redirectUrl: redirectUrl,
+      loginUrl: loginUrl,
     };
 
-    const response = await fetch('/api/redirect-card-select', {
+    const response = await fetch('/api/redirect', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -16,10 +17,8 @@ export default function Home() {
     const result = await response.json();
 
     if (response.status === 200) {
-      // 성공적으로 제출되었으면 mypage로 리디렉션
-      window.location.href = result.redirect;  // 수정된 부분: result.redirect
+      window.location.href = result.redirect;
     } else {
-      // 실패 시 메시지 출력
       if (response.status == 401)
       {
         window.location.href = result.redirect;
@@ -34,13 +33,13 @@ export default function Home() {
     <div className="main-container">
       <button
         className="main-container-button"
-        onClick={() => handleRedirect('celtic-cross')}
+        onClick={() => handleRedirect('/card-select/celtic-cross','/login/celtic-cross')}
       >
         심층 분석
       </button>
       <button
         className="main-container-button"
-        onClick={() => handleRedirect('a-or-b')}
+        onClick={() => handleRedirect('/card-select/a-or-b','/login/a-or-b')}
       >
         어떤 선택을 할까?
       </button>

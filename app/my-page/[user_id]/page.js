@@ -27,7 +27,7 @@ export default function MyPage() {
 
   return (
     <div className={styles.container}>
-      <h1>내가 작성한 타로 게시글</h1>
+      <h1 className={styles.title}> 내가 작성한 타로 게시글</h1>
       <ul className={styles.postList}>
         {posts.length > 0 ? (
           posts.map((post) => (

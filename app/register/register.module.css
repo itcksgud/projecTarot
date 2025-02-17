@@ -1,9 +1,9 @@
 .container {
     position: absolute;        /* 위치를 절대 위치로 설정 */
-    top: 50%;                  /* 화면 높이의 50%로 위치 */
+    top: 60%;                  /* 화면 높이의 50%로 위치 */
     left: 50%;                 /* 화면 너비의 50%로 위치 */
     transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
-    width: 400px;
+    width: 300px;
     margin: 0 auto;
     padding: 2rem;
     background-color: #f9f9f9;

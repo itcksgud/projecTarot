@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    env: {
+        NEXTAUTH_URL: "http://localhost:8000",
+      },
+};
 
 export default nextConfig;
