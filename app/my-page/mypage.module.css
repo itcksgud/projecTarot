@@ -1,0 +1,56 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover, .link:focus {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;        /* 파란색 제거 */
+  outline: none;         /* 포커스 시 테두리 제거 */
+}
+
+.container {
+  max-width: 90%; /* 700px -> 90% */
+  margin: 20px auto; /* 40px -> 20px */
+  padding: 20px; /* 30px -> 20px */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.postList {
+  list-style: none;
+  padding: 0;
+}
+
+.postItem {
+  background: #f0f4ff;
+  padding: 15px; /* 20px -> 15px */
+  margin-bottom: 12px; /* 15px -> 12px */
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.postItem:hover {
+  transform: translateY(-2px); /* -3px -> -2px */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.author {
+  font-weight: bold;
+  font-size: 14px; /* 16px -> 14px */
+  color: #333;
+}
+
+.date {
+  font-size: 10px; /* 12px -> 10px */
+  color: gray;
+  margin-top: 3px; /* 5px -> 3px */
+}
+
+.title {
+  font-size: 20px; /* 24px -> 20px */
+  font-weight: bold;
+  margin-bottom: 15px; /* 20px -> 15px */
+  color: #333;
+}

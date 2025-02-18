@@ -14,7 +14,8 @@ model TarotPost {
   content               String?
   date                  String
   answer                String?
-  author_id             String  
+  author_id             String
+  author                User    @relation(fields: [author_id], references: [id])
 }
 
 model User {
@@ -24,14 +25,18 @@ model User {
   name      String
   role      String
   createdAt DateTime @default(now())
+
+  tarotPosts TarotPost[]
+  comments   Comment[]
 }
 
 model Comment {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  author_id   String
-  author_name String
-  post_id     String
-  content     String
-  createdAt   DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  author_id String
+  post_id   String
+  content   String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [author_id], references: [id])
 }
+
 //변경 후 업데이트 npx prisma generate

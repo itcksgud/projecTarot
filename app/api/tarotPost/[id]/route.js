@@ -6,7 +6,6 @@ import { authOptions } from "../../auth/[...nextauth]/route"; // next-auth 설�
 export async function GET(req, { params }) {
   const { id } = await params;
   const session = await getServerSession(authOptions); // 올바르게 세션 가져오기
-  console.log(session);
 
   const tarotPost = await prisma.tarotPost.findUnique({
     where: { id: id },
@@ -23,7 +22,11 @@ export async function GET(req, { params }) {
 
   if (tarotPost.author_id===loginedUser.id || loginedUser.role==='admin')
   {
-    return new Response(JSON.stringify(tarotPost), {
+    return new Response(
+      JSON.stringify({
+      tarotPost,
+      role: loginedUser.role,
+      }), {
       headers: { 'Content-Type': 'application/json' },
     });
   } else {

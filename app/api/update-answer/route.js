@@ -37,7 +37,10 @@ export async function POST(req) {
       // 4. 이메일 전송
       await transporter.sendMail(mailOptions);
 
-      return new Response(JSON.stringify({ message: 'Post updated and email sent.' }), {
+      return new Response(JSON.stringify({ 
+        message: 'Post updated and email sent.',
+        updatedPost
+       }), {
         status: 200,
       });
     } else {

@@ -54,7 +54,7 @@ function Nav() {
           </span>
           <div className="button-container">
             <button
-              onClick={() => handleSubmit('/my-page/','/login/home')}
+              onClick={() => handleSubmit('/my-page','/login/home')}
               className="button my-page-button"
             >
               my page

@@ -83,3 +83,33 @@ cursor: pointer;
 .commentForm button:hover {
 background-color: #0056b3;
 }
+
+.answerForm {
+margin-top: 20px;
+width: 100%;
+max-width: 600px;
+display: flex;
+flex-direction: column;
+}
+
+.answerForm textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+resize: vertical;
+min-height: 100px;
+}
+
+.answerForm button {
+margin-top: 10px;
+padding: 10px;
+background-color: #00b60f;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.answerForm button:hover {
+background-color: #007200;
+}

@@ -23,9 +23,9 @@ export async function POST(req) {
             JSON.stringify({ redirect: redirectUrl }),
             { status: 200 }
         );
-    } else if (redirectUrl === '/my-page/'){
+    } else if (redirectUrl === '/my-page'){
         return new Response(
-            JSON.stringify({ redirect: `${redirectUrl}${session.user.id}`}),
+            JSON.stringify({ redirect: `${redirectUrl}`}),
             { status: 200 }
         );
     }

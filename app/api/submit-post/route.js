@@ -31,16 +31,7 @@ export async function POST(request) {
 
     // date 값에 맞게 selected_card_numbers 랜덤으로 재설정
     const selectedCards = selected_card_numbers.map(cardIndex => randomArray[cardIndex]);
-
-    // 데이터 확인용 로그
-    // console.log('Spread_type:', spread_type);
-    // console.log('Selected Cards:', selectedCards);
-    // console.log('Text Area Content:', content);
-    // console.log('Date:', date);
-
-    // content가 없을 경우
     
-
     // spread_type과 selected_card_numbers 길이에 따른 처리
     if (spread_type === 'pick-a-card' && selectedCards.length === 1) {
       // 'pick-a-card'일 때 한 장만 선택한 경우
@@ -69,7 +60,7 @@ export async function POST(request) {
       });
 
       return new Response(
-        JSON.stringify({ message: 'Data submitted successfully!', redirectUrl: `/my-page/${session.user.id}` }),
+        JSON.stringify({ message: 'Data submitted successfully!', redirectUrl: `/my-page` }),
         { status: 200 }
       );
     } else {
