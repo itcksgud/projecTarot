@@ -61,7 +61,9 @@ function Nav() {
             </button>
             
             <button
-              onClick={() => signOut({ callbackUrl: "/login/home" })}
+              onClick={() => signOut().then(() => {
+                window.location.href = "/login/home";
+              })}
               className="button logout-button"
             >
               Logout

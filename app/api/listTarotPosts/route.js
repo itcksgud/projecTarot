@@ -25,6 +25,11 @@ export async function GET(req) {
           spread_type: true,
           content: true,
           date: true,
+          author: {
+            select: {
+              name: true,
+            },
+          },
         },
       });
     } else {
