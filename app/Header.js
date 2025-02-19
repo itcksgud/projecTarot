@@ -61,7 +61,7 @@ function Nav() {
             </button>
             
             <button
-              onClick={() => signOut({ callbackUrl: "/" })}
+              onClick={() => signOut({ callbackUrl: "/login/home" })}
               className="button logout-button"
             >
               Logout
