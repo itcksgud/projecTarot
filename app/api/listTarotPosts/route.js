@@ -6,19 +6,24 @@ import { authOptions } from "../auth/[...nextauth]/route"; // next-auth 설정 �
 const prisma = new PrismaClient();
 
 export async function GET(req) {
-
-  const session = await getServerSession(authOptions); // 올바르게 세션 가져오기
+  const session = await getServerSession(authOptions);
 
   if (!session) {
-    return NextResponse.json({ error: "author_id is required" }, { status: 400 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  console.log(session);
+
   const loginedUser = await prisma.user.findUnique({
     where: { id: session.user.id },
   });
+
+  if (!loginedUser) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
   try {
-    let posts;
-    if (loginedUser.role === 'admin') {
+    let posts = [];
+
+    if (loginedUser.role === "admin") {
       posts = await prisma.tarotPost.findMany({
         select: {
           id: true,
@@ -26,14 +31,11 @@ export async function GET(req) {
           content: true,
           date: true,
           author: {
-            select: {
-              name: true,
-            },
+            select: { name: true },
           },
         },
       });
     } else {
-      // author_id로 필터링하여 게시글 가져오기
       posts = await prisma.tarotPost.findMany({
         where: { author_id: loginedUser.id },
         select: {
@@ -42,21 +44,29 @@ export async function GET(req) {
           content: true,
           date: true,
           author: {
-            select: {
-              name: true,
-            },
+            select: { name: true },
           },
         },
       });
     }
 
-    const postsWithAuthorName = posts.map(post => ({
-      ...post,
-      author_name: post.author?.name || "Unknown",
+    // 각 post에 대해 댓글 개수를 가져오는 부분
+    const postsWithComments = await Promise.all(posts.map(async (post) => {
+      const commentCount = await prisma.comment.count({
+        where: { post_id: post.id },
+      });
+
+      return {
+        ...post,
+        author_name: post.author?.name || "Unknown",
+        comment_count: commentCount,
+      };
     }));
-    // date가 String이므로 JavaScript에서 정렬 (최신순)
-    const sortedPosts = postsWithAuthorName.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
+
+    const sortedPosts = postsWithComments.sort(
+      (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
+    );
+
     return NextResponse.json(sortedPosts, { status: 200 });
   } catch (error) {
     console.error("Error fetching tarot posts:", error);

@@ -33,26 +33,55 @@
     z-index: 1;  /* 겹칠 때 어느 요소가 위에 올라올지 결정 */
 }
 
+/* 댓글 컨테이너 */
 .comments {
     margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
     width: 100%;
     max-width: 600px;
+  }
+  
+  /* 각 댓글 스타일 */
+  .comment {
+    margin-bottom: 15px;
     padding: 10px;
-    border-top: 1px solid #ccc;
-}
-
-.comment {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.commentDate {
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 5px;
-}
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .comment:hover {
+    transform: scale(1.02); /* 마우스 오버시 살짝 커지게 */
+  }
+  
+  /* 댓글 작성자 이름 */
+  .commentHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .authorName {
+    font-size: 1rem;
+    color: #000000; /* 파란색으로 강조 */
+  }
+  
+  .commentDate {
+    font-size: 0.475rem;
+    color: #888;
+  }
+  
+  /* 댓글 내용 */
+  .commentContent {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
   
 .commentForm {
 margin-top: 20px;

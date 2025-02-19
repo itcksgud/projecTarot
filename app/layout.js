@@ -1,17 +1,6 @@
-// app/layout.js (서버 컴포넌트)
-import { Geist, Geist_Mono } from "next/font/google";
+// app/layout.js
 import "./globals.css";
 import Header from "./Header"; // Header 컴포넌트는 클라이언트에서 사용되므로 나중에 클라이언트 컴포넌트로 처리
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Tarot",
@@ -21,10 +10,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {/* 서버 컴포넌트에서는 SessionProvider로 감싸고 */}
-          <Header /> {/* Header는 클라이언트에서 처리 */}
-          {children}
+      <head>
+        {/* Google Fonts에서 Nanum Gothic 폰트 추가 */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <Header /> {/* Header는 클라이언트에서 처리 */}
+        {children}
       </body>
     </html>
   );

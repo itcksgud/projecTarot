@@ -31,7 +31,7 @@ export async function POST(req) {
         from: process.env.EMAIL_USER,
         to: user.email,
         subject: 'ProjecTarot 답변완료.',
-        text: `링크를 확인해주세요. New answer: ${process.env.URL}/detail/${post_id}`,
+        text: `링크를 확인해주세요. New answer: ${process.env.NEXTAUTH_URL}/detail/${post_id}`,
       };
 
       // 4. 이메일 전송

@@ -16,6 +16,7 @@ model TarotPost {
   answer                String?
   author_id             String
   author                User    @relation(fields: [author_id], references: [id])
+  comments              Comment[]
 }
 
 model User {
@@ -37,6 +38,7 @@ model Comment {
   content   String
   createdAt DateTime @default(now())
   author    User     @relation(fields: [author_id], references: [id])
+  post      TarotPost @relation(fields: [post_id], references: [id]) // TarotPost와 연결
 }
 
 //변경 후 업데이트 npx prisma generate

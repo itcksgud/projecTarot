@@ -33,7 +33,7 @@ export default function MyPage() {
               <Link href={`/detail/${post.id}`} legacyBehavior>
                 <a className={styles.link}>
                   <h3 className={styles.author}>{post.author_name}</h3>
-                  <p>{post.content}</p>
+                  <p>{post.content} 💬{post.comment_count}</p>
                   <p className={styles.date}>{post.date}</p>
                 </a>
               </Link>

@@ -260,10 +260,13 @@ export default function DetailPage() {
       <div className={styles.comments}>
         {comments.map((comment) => (
           <div key={comment.id} className={styles.comment}>
-            <p>{comment.content}</p>
-            <p className={styles.commentDate}>
-              {new Date(comment.createdAt).toLocaleString()}
-            </p>
+            <div className={styles.commentHeader}>
+              <span className={styles.authorName}>{comment.author_name}</span>
+              <span className={styles.commentDate}>
+                {new Date(comment.createdAt).toLocaleString()}
+              </span>
+            </div>
+            <p className={styles.commentContent}>{comment.content}</p>
           </div>
         ))}
       </div>
