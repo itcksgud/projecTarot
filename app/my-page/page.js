@@ -29,7 +29,7 @@ export default function MyPage() {
         {posts.length > 0 ? (
           posts.map((post) => (
             
-            <li key={post.id} className={styles.postItem}>
+            <li key={post.id} className={styles.postItem} style={{background:post.answer?"#e8ffd3":"#d3e1ff"}}>
               <Link href={`/detail/${post.id}`} legacyBehavior>
                 <a className={styles.link}>
                   <h3 className={styles.author}>{post.author_name}</h3>

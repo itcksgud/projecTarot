@@ -30,6 +30,7 @@ export async function GET(req) {
           spread_type: true,
           content: true,
           date: true,
+          answer: true,
           author: {
             select: { name: true },
           },
@@ -43,6 +44,7 @@ export async function GET(req) {
           spread_type: true,
           content: true,
           date: true,
+          answer: true,
           author: {
             select: { name: true },
           },
