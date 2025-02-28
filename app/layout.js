@@ -1,13 +1,18 @@
 // app/layout.js
+import ClientSessionProvider from "@/components/ClientSessionProvider";
+import Header from "@/components/Header"; 
+import { authOptions } from "@/lib/auth"; // next-auth 설정 가져오기
+import { getServerSession } from "next-auth/next";
 import "./globals.css";
-import Header from "./Header"; // Header 컴포넌트는 클라이언트에서 사용되므로 나중에 클라이언트 컴포넌트로 처리
+
 
 export const metadata = {
   title: "Tarot",
   description: "Get your tarot",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <head>
@@ -20,8 +25,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Header /> {/* Header는 클라이언트에서 처리 */}
-        {children}
+        <ClientSessionProvider session={session}>
+          <Header/>
+          {children}
+        </ClientSessionProvider>
       </body>
     </html>
   );
