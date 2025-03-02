@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 /** @param {import("next/server").NextRequest} req */
 export function middleware(req) {
+  const isSecure = req.nextUrl.protocol === "https:"; // 현재 프로토콜 확인
   const cookieHeader = req.headers.get("cookie") || "";
   const cookies = new Map(
     cookieHeader
@@ -18,8 +19,8 @@ export function middleware(req) {
     const res = NextResponse.next();
     res.cookies.set("token", sessionToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: isSecure, // HTTP 환경에서는 secure: false
+      sameSite: "Lax", // 앱에서 테스트할 때 Lax로 변경
       path: "/",
     });
 
@@ -29,7 +30,7 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-// // 특정 경로에서만 미들웨어 실행 (예: /api/* 경로)
-// export const config = {
-//   matcher: "/api/:path*",
-// };
+// 특정 경로에서만 실행
+export const config = {
+  matcher: "/api/:path*",
+};
