@@ -1,5 +1,3 @@
-//C:\Users\kingc\Desktop\study\Nextjs\project-tarot\app\api\auth\[...nextauth]\route.js
-
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaClient } from '@prisma/client';
@@ -25,14 +23,11 @@ export const authOptions = {
             throw new Error('User not found');
           }
 
-          const isValidPassword = await bcryptjs.compare(
-            credentials.password,
-            user.password
-          );
-
+          const isValidPassword = await bcryptjs.compare(credentials.password, user.password);
           if (!isValidPassword) {
             throw new Error('Invalid credentials');
           }
+
           console.log(user);
           return { id: user.id, name: user.name, email: user.email };
         } catch (error) {
@@ -43,9 +38,9 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
-    maxAge: 24 * 60 * 60,
-    updateAge: 12 * 60 * 60,
+    strategy: 'jwt',  // 세션 대신 JWT 사용
+    maxAge: 24 * 60 * 60,  // 24시간 유지
+    updateAge: 12 * 60 * 60,  // 12시간마다 업데이트
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -59,9 +54,19 @@ export const authOptions = {
       return session;
     },
   },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        path: "/",
+      },
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
-// Export named handlers for GET and POST methods
 export { handler as GET, handler as POST };
