@@ -1,7 +1,6 @@
 import prisma from '@/lib/db';
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route"; // next-auth 설정 가져오기
-
+import { authOptions } from "@/lib/auth";
 
 export async function GET(req, { params }) {
   const { id } = await params;

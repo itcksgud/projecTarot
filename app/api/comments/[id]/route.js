@@ -1,6 +1,6 @@
 import prisma from '@/lib/db';
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route"; // next-auth 설정 가져오기
+import { authOptions } from "@/lib/auth";
 import nodemailer from 'nodemailer';
 
 export async function GET(req, { params }) {

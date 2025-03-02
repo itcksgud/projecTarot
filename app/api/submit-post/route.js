@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import seedrandom from 'seedrandom';  // seedrandom을 함수로 임포트
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route"; // next-auth 설정 가져오기
+import { authOptions } from "@/lib/auth";
 
 function generateRandomArray(seed) {
   const array = Array.from({ length: 78 }, (_, i) => i); // 0~77

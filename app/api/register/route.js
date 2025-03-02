@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';  // 비밀번호 해싱을 위한 라이브러리
 import prisma from '@/lib/db';  // Prisma 클라이언트 import (경로를 프로젝트에 맞게 수정)
-import { redirect } from 'next/dist/server/api-utils';
+
 
 
 
