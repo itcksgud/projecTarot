@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export function middleware(req) {
     const sessionToken =
       req.cookies.get("next-auth.session-token")?.value ||
