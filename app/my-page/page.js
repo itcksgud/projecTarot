@@ -32,15 +32,15 @@ export default function MyPage() {
             <li key={post.id} className={styles.postItem} style={{background:post.answer?"#f4fff0":"#f0f4ff"}}>
               <Link href={`/detail/${post.id}`} legacyBehavior>
                 <a className={styles.link}>
-                  <h3 className={styles.author}>{post.author_name}</h3>
-                  <p>{post.content} 💬{post.comment_count}</p>
+                  <h3 className={styles.author}>{post.author_name} 💬{post.comment_count}</h3>
+                  <p>{post.content} </p>
                   <p className={styles.date}>{post.date}</p>
                 </a>
               </Link>
             </li>
           ))
         ) : (
-          <p>작성된 글이 없습니다.</p>
+          <p>데이터를 불러오는 중... / 작성된 글이 없습니다.</p>
         )}
       </ul>
     </div>

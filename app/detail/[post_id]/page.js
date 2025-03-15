@@ -218,29 +218,13 @@ export default function DetailPage() {
 
   return (
     <div className="detail-container">
-      <h1>{tarotPost.spread_type}</h1>
-      <p>{tarotPost.date}</p>
-      <p
-        style={{
-          maxWidth: '600px',
-          maxHeight: '300px',
-          overflow: 'auto',
-          whiteSpace: 'normal',
-          wordWrap: 'break-word',
-        }}
-      >
+      <h1 className={styles.spread_type}> {tarotPost.spread_type}</h1>
+      <p className={styles.detail_date}> {tarotPost.date}</p>
+      <p className={styles.content_box}>
         {tarotPost.content}
       </p>
       <span>{spread}</span>
-      <p
-        style={{
-          maxWidth: '600px',
-          maxHeight: '400px',
-          overflow: 'auto',
-          whiteSpace: 'normal',
-          wordWrap: 'break-word',
-        }}
-      >
+      <p className={styles.answer_box}>
         {tarotPost.answer}
       </p>
 

@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
       <head>
         {/* Google Fonts에서 Nanum Gothic 폰트 추가 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
           rel="stylesheet"

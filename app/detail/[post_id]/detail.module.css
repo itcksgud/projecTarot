@@ -51,6 +51,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    box-sizing: border-box;
   }
   
   .comment:hover {
@@ -141,4 +142,43 @@ cursor: pointer;
 
 .answerForm button:hover {
 background-color: #007200;
+}
+/* 제목 (spread_type) */
+.spread_type {
+  font-size: 2rem; /* 크기 조절 */
+  font-weight: bold;
+  color: #2c3e50; /* 어두운 네이비 톤 */
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #007bff; /* 밑줄 효과 */
+  margin-bottom: 20px;
+}
+
+/* 날짜 (date) */
+.detail_date {
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* 내용 & 답변 (content & answer) */
+.content_box, 
+.answer_box {
+  max-width: 600px;
+  max-height: 400px;
+  overflow: auto;
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 10px auto;
+  box-sizing: border-box;
+}
+
+/* 답변은 연한 초록색 배경 */
+.detail-container .answer-box {
+  background-color: #e9f7ef;
+  border-left: 4px solid #28a745;
 }
