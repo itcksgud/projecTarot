@@ -65,9 +65,7 @@ export async function GET(req) {
       };
     }));
 
-    const sortedPosts = postsWithComments.sort(
-      (a, b) => new Date(a.date || 0) - new Date(b.date || 0)
-    );
+    const sortedPosts = postsWithComments.reverse();
 
     return NextResponse.json(sortedPosts, { status: 200 });
   } catch (error) {
