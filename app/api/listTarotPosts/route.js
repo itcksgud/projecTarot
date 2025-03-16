@@ -66,7 +66,7 @@ export async function GET(req) {
     }));
 
     const sortedPosts = postsWithComments.sort(
-      (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
+      (a, b) => new Date(a.date || 0) - new Date(b.date || 0)
     );
 
     return NextResponse.json(sortedPosts, { status: 200 });
