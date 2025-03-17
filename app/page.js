@@ -80,7 +80,7 @@ export default function Home() {
         className="main-container-button-readme"
         onClick={openModal}
       >
-        READ ME
+        읽어주세요!
       </button>
 
       {isModalOpen && (

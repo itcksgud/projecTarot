@@ -1,9 +1,8 @@
 'use client'
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from './login.module.css';
-import {getServerSession} from '@/lib/auth';
 import { useParams } from "next/navigation";
 
 export default function Login() {

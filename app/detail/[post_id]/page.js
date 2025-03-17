@@ -32,9 +32,7 @@ export default function DetailPage() {
       // 댓글 데이터 가져오기
       const commentsResponse = await fetch(`/api/comments/${post_id}`);
       const commentsData = await commentsResponse.json();
-      setComments(commentsData);
-
-      
+      setComments(commentsData);   
     }
 
     fetchData();

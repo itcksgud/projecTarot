@@ -109,7 +109,7 @@ export default function CardSelect() {
       <div className={`card-circle ${isExpanded ? 'expanded' : ''}`}>
         <div style={{display:`${isExpanded ? 'block':'none'}`}}>
           <div className="card-select-status">{`${cardCnt}/${selectedCardCount}`}</div>
-          <button className={styles.cardSelectButton} onClick={handleSubmit}>Submit</button>
+          <button className={styles.cardSelectButton} onClick={handleSubmit}>카드 뽑기</button>
         </div>
         
         {cards.map((item, index) => {
