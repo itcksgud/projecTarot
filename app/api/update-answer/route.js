@@ -30,8 +30,19 @@ export async function POST(req) {
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: user.email,
-        subject: 'ProjecTarot 답변완료.',
-        text: `링크를 확인해주세요. New answer: ${process.env.NEXTAUTH_URL}/detail/${post_id}`,
+        subject: 'ProjecTarot - 새로운 답변이 도착했습니다!',
+        text: `
+안녕하세요, ${user.name}님.
+
+ProjecTarot에 새로운 답변이 등록되었습니다. 아래의 링크를 클릭하셔서 자세한 내용을 확인해 보세요:
+
+${process.env.NEXTAUTH_URL}/detail/${post_id}
+
+항상 저희 ProjecTarot를 이용해 주셔서 감사합니다.
+즐거운 하루 보내세요!
+
+- ProjecTarot 팀
+`.trim(),
       };
 
       // 4. 이메일 전송
