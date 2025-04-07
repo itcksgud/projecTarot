@@ -58,20 +58,38 @@ ProjecTarot은 사용자가 온라인에서 쉽고 편하게 타로 상담을 �
 
 ```prisma
 // schema.prisma
-model Document {
-  id        String   @id @default(auto())
-  authorId  String
-  spreadType String
-  content   String
-  date      DateTime @default(now())
-  comments  Comment[]
+model TarotPost {
+  id                    String  @id @default(auto()) @map("_id") @db.ObjectId
+  spread_type           String
+  selected_card_numbers Int[]
+  content               String?
+  date                  String
+  answer                String?
+  author_id             String
+  author                User    @relation(fields: [author_id], references: [id])
+  comments              Comment[]
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  name      String
+  role      String
+  createdAt DateTime @default(now())
+
+  tarotPosts TarotPost[]
+  comments   Comment[]
 }
 
 model Comment {
-  id         String   @id @default(auto())
-  documentId String
-  content    String
-  createdAt  DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  author_id String
+  post_id   String
+  content   String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [author_id], references: [id])
+  post      TarotPost @relation(fields: [post_id], references: [id]) // TarotPost와 연결
 }
 ```
 
