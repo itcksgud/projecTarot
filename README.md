@@ -112,3 +112,4 @@ model Comment {
 - 사용자 인터페이스 및 경험(UI/UX) 향상
 - 추가적인 타로 스프레드 기능 확장
 - AI API를 사용한 간단 분석 기능
+- database date 수정
